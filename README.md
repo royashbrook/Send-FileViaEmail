@@ -1,3 +1,22 @@
-# Get-TestResultsForMCTF
+# Send-FileViaEmail
 
-This module returns a list of test results for a Motor Carrier Tax Filing where required by a state. It requires a collection of Freight Items to be passed in and a collection of Tests. The tests will have fields defined and regex patterns defined to test those fields for. Tests will also have a collection of Tests for the various companies required for a filing. A companytypes collection must be passed in with a defined unique fields that make up the unique companies for testing. Only one test result will be marked for the freight item per bad company test, but the Company test results will show all errors with companies for seperated processing.
+Sends a file via email using passed in values. Currently normally jobs are using o365. Pass in file path and mail config. Mail config structure is generally read in from a json file and looks like:
+
+```json
+ "mail": {
+    "from": "email from",
+    "to": "email to",
+    "bcc": "email bcc",
+    "subject": "email subject",
+    "smtp": "smtp.office365.com",
+    "port": "587",
+    "user": "office 365 id",
+    "pass": "office 365 password"
+}
+```
+
+Currently requires a bcc. I have included the smtp info for o365 use.
+
+After having a config, can be called like:
+
+`Send-FileViaEmail .\somefile.txt $mailconfig`
